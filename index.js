@@ -1,5 +1,5 @@
 'use strict'
-const botapi = require('node-telegram-bot-api')
+const Telegraf = require('telegraf')
 const u = require('elife-utils')
 
 /*      understand/
@@ -17,9 +17,9 @@ function main() {
  * Load the configuration (from environment variables) or defaults
  */
 function loadConfig() {
-    let cfg = {};
-    cfg.TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
-    return cfg;
+    let cfg = {}
+    cfg.TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN
+    return cfg
 }
 
 /*      outcome/
@@ -30,11 +30,13 @@ function startBot(conf) {
         u.showErr("TELEGRAM_TOKEN must be set")
         return
     }
-    const bot = new TelegramBot(conf.TELEGRAM_TOKEN, {polling:true});
-    bot.on('message', (msg) => {
-        console.log(msg)
-        bot.sendMessage(msg.chat.id, 'Got it!');
-    });
+    const bot = new Telegraf(conf.TELEGRAM_TOKEN);
+    bot.on('message', (ctx) => {
+        console.log(ctx)
+        ctx.reply('Got it!')
+    })
+
+    bot.startPolling()
 }
 
-
+main()

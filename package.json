@@ -7,6 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "elife-utils": "everlifeai/elife-utils",
-    "node-telegram-bot-api": "^0.30.0"
+    "telegraf": "^3.22.2"
   }
 }
