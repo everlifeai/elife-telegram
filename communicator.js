@@ -14,17 +14,10 @@ const client = new cote.Requester({
 let TELEGRAM;
 
 /*      outcome/
- * Register ourselves with the communication manager and save the
- * telegram client so we can use it async.
+ * Save the telegram client so we can use it asynchronously
  */
 function setup(tg) {
-    client.send({
-        type: 'register-channel',
-        chan: botKey,
-    }, (err) => {
-        if(err) u.showErr(err)
-        else TELEGRAM = tg
-    })
+    TELEGRAM = tg
 }
 
 /*      outcome/
@@ -41,8 +34,10 @@ function handleMsg(ctx) {
             from: ctx.from,
             msg: ctx.message.text
         }, (err) => {
-            u.showErr(err)
-            ctx.reply(err)
+            if(err) {
+                u.showErr(err)
+                ctx.reply(err)
+            }
         })
     }
 }
