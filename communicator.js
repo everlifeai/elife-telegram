@@ -1,0 +1,70 @@
+'use strict'
+const cote = require('cote')
+const u = require('elife-utils')
+
+const client = new cote.Requester({
+    name: 'Telegram Comm Channel',
+    key: 'everlife-communication-svc',
+})
+
+/*      understand/
+ * The communication client we use to reach back to the user with a
+ * message
+ */
+let TELEGRAM;
+
+/*      outcome/
+ * Register ourselves with the communication manager and save the
+ * telegram client so we can use it async.
+ */
+function setup(tg) {
+    client.send({
+        type: 'register-channel',
+        chan: botKey,
+    }, (err) => {
+        if(err) u.showErr(err)
+        else TELEGRAM = tg
+    })
+}
+
+/*      outcome/
+ * Send the message to the communication manager
+ * and keep a context in case we get a response
+ */
+function handleMsg(ctx) {
+    if(!TELEGRAM) ctx.reply('Error! Telegram not registered with Avatar')
+    else {
+        client.send({
+            type: 'message',
+            chan: botKey,
+            ctx: ctx.chat.id,
+            from: ctx.from,
+            msg: ctx.message.text
+        }, (err) => {
+            u.showErr(err)
+            ctx.reply(err)
+        })
+    }
+}
+
+
+/*      understand/
+ * The telegram microservice has to be partitioned by a key to identify
+ * it uniquely.
+ */
+const botKey = 'everlife-comm-telegram-svc'
+
+const botChannel = new cote.Responder({
+    name: 'Everlife Communication Manager Service',
+    key: botKey,
+})
+
+botChannel.on('reply', (req, cb) => {
+    TELEGRAM.sendMessage(req.ctx, req.msg)
+})
+
+
+module.exports = {
+    handleMsg: handleMsg,
+    setup: setup,
+}
