@@ -56,6 +56,8 @@ const botChannel = new cote.Responder({
 
 botChannel.on('reply', (req, cb) => {
     TELEGRAM.sendMessage(req.ctx, req.msg)
+    .then(()=>cb())
+    .catch(cb)
 })
 
 
