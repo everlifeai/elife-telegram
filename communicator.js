@@ -22,11 +22,18 @@ function setup(tg) {
 
 /*      outcome/
  * Send the message to the communication manager
- * and keep a context in case we get a response
+ * and keep a context in case we get a response.
+ * In the special case that it is a `start` message, respond with
+ * welcoming the user.
  */
 function handleMsg(ctx) {
-    if(!TELEGRAM) ctx.reply('Error! Telegram not registered with Avatar')
-    else {
+    if(!TELEGRAM) {
+        ctx.reply('Error! Telegram not registered with Avatar')
+        return
+    }
+    if(ctx.message.text == '/start') {
+        ctx.reply('Hello!')
+    } else {
         client.send({
             type: 'message',
             chan: botKey,
