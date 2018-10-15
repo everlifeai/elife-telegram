@@ -3,54 +3,41 @@
 
 
 "@types/node@^10.1.2":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.7.1.tgz#b704d7c259aa40ee052eec678758a68d07132a2e"
-  integrity sha512-EGoI4ylB/lPOaqXqtzAyL8HcgOuCtH2hkEaLmkueOYufsTFWBn4VCvlCDC2HW8Q+9iF+QVC3sxjDKQYjHQeZ9w==
+  version "10.11.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.11.7.tgz#0e75ca9357d646ca754016ca1d68a127ad7e7300"
 
-debug@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/debug/-/debug-3.1.0.tgz#5bb5a0672628b64149566ba16819e61518c67261"
-  integrity sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==
+debug@^4.0.1:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.0.tgz#373687bffa678b38b1cd91f861b63850035ddc87"
   dependencies:
-    ms "2.0.0"
+    ms "^2.1.1"
 
 elife-utils@everlifeai/elife-utils:
   version "0.1.0"
-  resolved "git+ssh://git@github.com/everlifeai/elife-utils.git#3202c20c5a851941e138d03cd382f509c00ea0c6"
+  resolved "git+ssh://git@github.com/everlifeai/elife-utils.git#bad20d982390bdae2ba8f9cb2463d52fe5a8a758"
 
-ms@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
-  integrity sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g=
+ms@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.1.tgz#30a5864eb3ebb0a66f2ebe6d727af06a09d86e0a"
 
 node-fetch@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.2.0.tgz#4ee79bde909262f9775f731e3656d0db55ced5b5"
-  integrity sha512-OayFWziIxiHY8bCUyLX6sTpDH8Jsbp4FfYd1j1f7vZyfgkcOnAyM4oQR16f8a0s7Gl/viMGRey8eScYk4V4EZA==
 
 sandwich-stream@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/sandwich-stream/-/sandwich-stream-1.0.0.tgz#7830e45797b5933287f1f9b28f871907456262f2"
-  integrity sha1-eDDkV5e1kzKH8fmyj4cZB0ViYvI=
 
 telegraf@^3.22.2:
-  version "3.22.2"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.22.2.tgz#ae8304a853565377867461d001b21619b0190abb"
-  integrity sha512-ZAj55rDX8mobqD3mLzGW3h6qxZxEsdbqatJLj+R6lkU0de+O2pYMnBxPl+62erYl6WIbcrufU4vSV2p64lqv3A==
+  version "3.24.1"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-3.24.1.tgz#bfcfe326210ea9d341032a6e6910e36f4c25440c"
   dependencies:
     "@types/node" "^10.1.2"
-    debug "^3.0.0"
+    debug "^4.0.1"
     node-fetch "^2.2.0"
     sandwich-stream "^1.0.0"
     telegram-typings "^3.6.0"
-    typescript "^3.0.1"
 
 telegram-typings@^3.6.0:
   version "3.6.1"
   resolved "https://registry.yarnpkg.com/telegram-typings/-/telegram-typings-3.6.1.tgz#1288d547f8694b61f1c01c2993e295f3114d9e25"
-  integrity sha512-njVv1EAhIZnmQVLocZEADYUyqA1WIXuVcDYlsp+mXua/XB0pxx+PKtMSPeZ/EE4wPWTw9h/hA9ASTT6yQelkiw==
-
-typescript@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.0.1.tgz#43738f29585d3a87575520a4b93ab6026ef11fdb"
-  integrity sha512-zQIMOmC+372pC/CCVLqnQ0zSBiY7HHodU7mpQdjiZddek4GMj31I3dUJ7gAs9o65X7mnRma6OokOkc6f9jjfBg==
