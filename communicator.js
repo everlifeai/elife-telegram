@@ -62,7 +62,7 @@ function loadOwner() {
             setTimeout(loadOwner, 10000)
         } else {
             owner.loaded = true
-            if(msgs.length) owner.id = msgs[0].val
+            if(msgs.length) owner.id = msgs[0].value.content.val
         }
     })
 }
