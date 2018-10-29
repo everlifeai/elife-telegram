@@ -55,7 +55,7 @@ let owner = {
 function loadOwner() {
     ssb.send({
         type: 'msg-by-type',
-        mstype: 'elife-telegram.owner',
+        msgtype: 'elife-telegram.owner',
     }, (err, msgs) => {
         if(err) {
             u.showErr(err)
