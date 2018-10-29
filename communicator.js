@@ -81,6 +81,7 @@ function isOwner(ctx, cb) {
 
     function bind_user_1(ctx, cb) {
         owner.id = ctx.from.id
+        owner.firstTime = true
         if(!owner.id) cb(`Error! Telegram owner not found`)
         else {
             ssb.send({
@@ -109,7 +110,12 @@ function handleOwnerMsg(ctx) {
         return
     }
     if(ctx.message.text == '/start') {
-        ctx.reply('Hello!')
+        if(owner.firstTime) {
+            let n = ctx.message.from ? ctx.message.from.username : ""
+            ctx.reply(`Hi ${n},\nThanks for creating me. I'm your immutable AI Avatar on EverLife.AI Network. I am so excited to chat with you!`)
+            owner.firstTime = false
+        }
+        ctx.reply(`Here's couple of commands that would be handy any time you need\n/help - Get a list of all commands that you can use at any time\n /balance - See wallet balance`)
     } else {
         client.send({
             type: 'message',
