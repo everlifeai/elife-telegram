@@ -140,7 +140,7 @@ function handleOwnerMsg(ctx) {
 const botKey = 'everlife-comm-telegram-svc'
 
 const botChannel = new cote.Responder({
-    name: 'Everlife Communication Manager Service',
+    name: 'Telegram Communication Service',
     key: botKey,
 })
 
