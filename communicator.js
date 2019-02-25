@@ -38,7 +38,7 @@ function handleMsg(ctx) {
             return
         }
         if(isowner) handleOwnerMsg(ctx)
-        else ctx.reply('Error! I only respond to my owner')
+        else handleNotOwnerMsg(ctx)
     })
 }
 
@@ -130,6 +130,29 @@ function handleOwnerMsg(ctx) {
             }
         })
     }
+}
+
+/*      outcome/
+ * Send the request as a 'non-owner' message to the communication
+ * manager.
+ */
+function handleNotOwnerMsg(ctx) {
+    if(!TELEGRAM) {
+        ctx.reply('Error! Telegram not registered with Avatar')
+        return
+    }
+    client.send({
+        type: 'not-owner-message',
+        chan: botKey,
+        ctx: ctx.chat.id,
+        from: ctx.from,
+        msg: ctx.message.text
+    }, (err) => {
+        if(err) {
+            u.showErr(err)
+            ctx.reply(err)
+        }
+    })
 }
 
 
