@@ -32,7 +32,7 @@ function loadConfig() {
  */
 function setupComm(conf) {
     if(!conf.TELEGRAM_TOKEN) {
-        u.showErr("TELEGRAM_TOKEN must be set")
+        u.showErr("TELEGRAM_TOKEN must be set to use the Telegram channel")
         return
     }
 
@@ -45,7 +45,7 @@ function setupComm(conf) {
  */
 function startBot(conf) {
     if(!conf.TELEGRAM_TOKEN) {
-        u.showErr("TELEGRAM_TOKEN must be set")
+        u.showErr("TELEGRAM_TOKEN must be set to use the Telegram channel")
         return
     }
 
