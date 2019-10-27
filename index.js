@@ -1,7 +1,7 @@
 'use strict'
 const Telegraf = require('telegraf')
 const Telegram = require('telegraf/telegram')
-const u = require('elife-utils')
+const u = require('@elife/utils')
 const comm = require('./communicator')
 
 /*      understand/
