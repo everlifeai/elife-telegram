@@ -173,6 +173,19 @@ botChannel.on('reply', (req, cb) => {
     .catch(cb)
 })
 
+/**
+  *   outcome/
+  *  This service is used to get the message from the support channel, 
+  * show the message to the owner of the avatar
+  * 
+  */
+botChannel.on('support-msg', (req, cb) =>{
+    if(owner.id){
+        TELEGRAM.sendMessage(owner.id, req.msg)
+        .then(()=>cb())
+        .catch(cb)
+    } 
+} )
 
 module.exports = {
     handleMsg: handleMsg,
