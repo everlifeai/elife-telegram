@@ -15,10 +15,5 @@
   "bugs": {
     "url": "https://github.com/everlifeai/elife-telegram/issues"
   },
-  "homepage": "https://github.com/everlifeai/elife-telegram#readme",
-  "dependencies": {
-    "@elife/utils": "^2.1.1",
-    "telegraf": "^3.22.2"
-  }
-
+  "homepage": "https://github.com/everlifeai/elife-telegram#readme"
 }
