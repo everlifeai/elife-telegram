@@ -12,9 +12,7 @@ const comm = require('./communicator')
  */
 function main() {
     comm.setup()
-    const bot = startBot(loadConfig())
-    process.once('SIGINT', () => bot.stop('SIGINT'))
-    process.once('SIGTERM', () => bot.stop('SIGTERM'))
+    startBot(loadConfig())
 }
 
 /*      outcome/
@@ -40,7 +38,8 @@ function startBot(conf) {
 
     bot.startPolling()
 
-    return bot
+    process.once('SIGINT', () => bot.stop('SIGINT'))
+    process.once('SIGTERM', () => bot.stop('SIGTERM'))
 }
 
 main()
