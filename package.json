@@ -1,6 +1,6 @@
 {
   "name": "elife-telegram",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "The Everlife Default Telegram Communication Channel",
   "main": "index.js",
   "author": "charles.lobo@gmail.com",
