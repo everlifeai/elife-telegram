@@ -1,6 +1,5 @@
 'use strict'
-const Telegraf = require('telegraf')
-const Telegram = require('telegraf/telegram')
+const { Telegraf } = require('telegraf')
 const u = require('@elife/utils')
 const comm = require('./communicator')
 
@@ -8,13 +7,14 @@ const comm = require('./communicator')
  * This is the main entry point where we start.
  *
  *      outcome/
- * Load any configuration information, set up the communication channels
- * with the comm manager, and start the bot.
+ * Load any configuration information, setup the communication channel,
+ * and start the bot.
  */
 function main() {
-    let conf = loadConfig()
-    setupComm(conf)
-    startBot(conf)
+    comm.setup()
+    const bot = startBot(loadConfig())
+    process.once('SIGINT', () => bot.stop('SIGINT'))
+    process.once('SIGTERM', () => bot.stop('SIGTERM'))
 }
 
 /*      outcome/
@@ -24,20 +24,6 @@ function loadConfig() {
     let cfg = {}
     cfg.TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN
     return cfg
-}
-
-/*      outcome/
- * Start the communication microservice and provide it with a telegram
- * client it can use to communicate with the user.
- */
-function setupComm(conf) {
-    if(!conf.TELEGRAM_TOKEN) {
-        u.showErr("TELEGRAM_TOKEN must be set to use the Telegram channel")
-        return
-    }
-
-    const telegram = new Telegram(conf.TELEGRAM_TOKEN)
-    comm.setup(telegram)
 }
 
 /*      outcome/
@@ -53,6 +39,8 @@ function startBot(conf) {
     bot.on('message', comm.handleMsg)
 
     bot.startPolling()
+
+    return bot
 }
 
 main()

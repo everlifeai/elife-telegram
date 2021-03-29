@@ -8,18 +8,15 @@ const client = new cote.Requester({
 })
 
 /*      understand/
- * The communication client we use to reach back to the user with a
- * message
+ * The communication client we use to reach back to the user
  */
 let TELEGRAM;
 
 /*      outcome/
- * Save the telegram client so we can use it asynchronously and load the
- * telegram owner if needed.
+ * load telegram owner
  */
 function setup(tg) {
-    TELEGRAM = tg
-    if(!owner.loaded) loadOwner()
+    loadOwner()
 }
 
 /*      problem/
@@ -30,6 +27,7 @@ function setup(tg) {
  * Check if this is our owner and only then respond.
  */
 function handleMsg(ctx) {
+    TELEGRAM = ctx.telegram
     isOwner(ctx, (err, isowner) => {
         if(err) {
             u.showErr(err)
@@ -53,6 +51,7 @@ let owner = {
     id: null,
 }
 function loadOwner() {
+    if(owner.loaded) return
     ssb.send({
         type: 'msg-by-type',
         msgtype: 'elife-telegram.owner',
@@ -105,10 +104,6 @@ function isOwner(ctx, cb) {
  * welcoming the user.
  */
 function handleOwnerMsg(ctx) {
-    if(!TELEGRAM) {
-        ctx.reply('Error! Telegram not registered with Avatar')
-        return
-    }
     if(ctx.message.text == '/start') {
         if(owner.firstTime) {
             let n = ctx.message.from ? ctx.message.from.username : ""
@@ -137,10 +132,6 @@ function handleOwnerMsg(ctx) {
  * manager.
  */
 function handleNotOwnerMsg(ctx) {
-    if(!TELEGRAM) {
-        ctx.reply('Error! Telegram not registered with Avatar')
-        return
-    }
     client.send({
         type: 'not-owner-message',
         chan: botKey,
